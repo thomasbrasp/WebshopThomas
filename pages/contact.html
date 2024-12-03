@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Document</title>
+    <link href="../css/reset.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+</head>
+
+
+
+<body class="contact">
+<header>
+    <div class="logo-container">
+        <img alt="logo" class="logo" src="../images/Logo/KeirsenTransparent2.png"/>
+        <nav>
+            <a href="../index.html">Hoofdpagina</a>
+            <a href="shop.html">Producten</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <form action="#" class="contact-form" method="POST" onsubmit="return false;">
+        <div class="form-group">
+            <label for="name">Naam:</label>
+            <input id="name" name="name" placeholder="Naam" required type="text"/>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" name="email" placeholder="Email" required type="email"/>
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Onderwerp:</label>
+            <input id="subject" name="subject" placeholder="Onderwerp" type="text"/>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefoonnummer (optioneel):</label>
+            <div class="phone-input">
+                <select id="country-code" name="country-code">
+                    <option value="+32">+32 (BE)</option>
+                    <option value="+31">+31 (NL)</option>
+                    <option value="+33">+33 (FR)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+49">+49 (DE)</option>
+                    <!-- Add more country codes as needed -->
+                </select>
+                <input id="phone" name="phone" placeholder="(0)478 36 12 45" type="tel"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="recipient">Verstuur bericht naar:</label>
+            <select id="recipient" name="recipient">
+                <option value="shopowner">Winkel eigenaar</option>
+                <option value="developer">Web ontwikkelaar</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Bericht:</label>
+            <textarea id="message" name="message" placeholder="Type uw bericht hier." required rows="5"></textarea>
+        </div>
+        <a href="#">
+            <button class="submit-btn" type="submit">Verstuur</button>
+        </a>
+    </form>
+
+</main>
+
+<aside>
+    <div class="map" id="map" style="height: 400px"></div>
+</aside>
+<footer><p>&copy; 2024 Keirsen. All rights reserved.</p></footer>
+
+
+<script src="../scripts/map.js"></script>
+</body>
+</html>
+
+

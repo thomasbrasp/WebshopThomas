@@ -1,0 +1,49 @@
+/*******************************************
+ *               VARIABLES                  *
+ *******************************************/
+:root {
+    /* colors */
+    --color-primary: #EEEEEE;
+    --color-secondary: #686D76;
+    --color-tertiary: #373A40;
+    --color-accent: #DC5F00;
+
+    /* typography */
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.25rem;
+
+    /* spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* border radius and border */
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+    --border-radius-large: 12px;
+    --border-width: 1px;
+    --border-color: #686D76;
+
+    /* shadows */
+    --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    /* opacity */
+    --opacity-low: 0.1;
+    --opacity-medium: 0.5;
+    --opacity-high: 0.9;
+
+    /* transition speeds/types */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-medium: 0.5s;
+    --transition-speed-slow: 0.8s;
+    --transition-ease: ease-in-out;
+
+    /* container width */
+    --container-width: 1200px;
+    --container-padding: 16px;
+}
