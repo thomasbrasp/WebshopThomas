@@ -1,4 +1,9 @@
 'use strict';
+//get all nested stuff out
+//check feedback list and adjust accordingly
+//check next assignment
+
+
 (() => {
   const products = [
     {
@@ -341,6 +346,8 @@
           renderShoppingCart();
         }
       });
+
+      quantityInput.addEventListener('')
 
 
       const removeItemButton = addElement('button', 'remove-from-cart', 'remove');
