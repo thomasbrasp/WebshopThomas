@@ -1,39 +1,40 @@
 "use strict";
 
-
-const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve product data
-const productData = localStorage.getItem('selectedBestseller');
-document.addEventListener('DOMContentLoaded', () => {
-
-    renderProductPage(product);
-
-});
+// Retrieve product data from localStorage
+const selectedProduct = localStorage.getItem('selectedProduct');
+const selectedBestseller = localStorage.getItem('selectedBestseller');
 
 document.addEventListener('DOMContentLoaded', () => {
-    const productData = localStorage.getItem('selectedBestseller');
-    if (productData) {
-        const product = JSON.parse(productData); // Parse the product data back to an object
+    let product;
 
-        // Display product details on the page
-        const productContainer = document.querySelector('#product-details-container');
-        productContainer.innerHTML = `
-            <h1>${product.productName}</h1>
-            <img src="${product.imgSrcMain}" alt="${product.imgAlt}">
-            <p>${product.longDescription}</p>
-            <p>Price: $${product.price.toFixed(2)}</p>
-        `;
+    // Prioritize selectedBestseller over selectedProduct
+    if (selectedBestseller) {
+        product = JSON.parse(selectedBestseller); // Use selectedBestseller if available
+        console.log('Using selectedBestseller data');
+        localStorage.removeItem('selectedBestseller');
+    } else if (selectedProduct) {
+        product = JSON.parse(selectedProduct); // Use selectedProduct if selectedBestseller is not available
+        console.log('Using selectedProduct data');
+        localStorage.removeItem('selectedProduct');
     } else {
         console.error('No product data found in localStorage.');
+        return; // Exit early if no product data is available
     }
-});
 
+    renderProductPage(product); // Render the product page with the chosen data
+});
 
 function renderProductPage(product) {
     const productPageMain = document.querySelector('.product-page-main');
+    if (!productPageMain) {
+        console.error('Product page container not found!');
+        return;
+    }
+
     const productPageContainer = addElement('div', 'product-page-container');
 
-    productPageContainer.innerHTML =`
-    <img alt=${product.imgAlt} class="product-page-img" src="../${product.imgSrcMain}"/>
+    productPageContainer.innerHTML = `
+    <img alt="${product.imgAlt}" class="product-page-img" src="../${product.imgSrcMain}"/>
     <h2 class="product-page-name">${product.productName}</h2>
     <p class="product-page-description" style="width: 500px">${product.longDescription}</p>
     <h3>Productkenmerken:</h3>
@@ -43,7 +44,7 @@ function renderProductPage(product) {
         <li><strong>Wax: </strong>${product.productDetails.wax}</li>
         <li><strong>Materiaal: </strong>${product.productDetails.containerMaterial}</li>
         <li><strong>Kleur: </strong>${product.productDetails.color}</li>
-        <li><strong>Allergien: </strong>${product.productDetails.allergy}</li>
+        <li><strong>Allergieën: </strong>${product.productDetails.allergy}</li>
     </ul>
     <p>${product.description}</p>`;
 
@@ -57,4 +58,3 @@ function addElement(elementType, elementClass) {
     }
     return element;
 }
-
