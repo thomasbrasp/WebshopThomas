@@ -117,12 +117,12 @@ function renderShoppingCart() {
         shoppingCartItem.innerHTML = `
           <div class="flex-space-between">
           <h2 class="product-name">${item.productName}</h2>
-          <button class="remove-from-cart">X</button>
+          <input type="number" class="quantity-input" value="${item.quantity}" min="1" />          
           </div>
-          
+          <button class="remove-from-cart">remove</button>
           <article class="flex-space-between">      
             <h3 class="price">€${item.price}</h3>
-            <input type="number" class="quantity-input" value="${item.quantity}" min="1" />
+            
             <h3 class="total-price">€${item.totalPrice.toFixed(2)}</h3>
           </article>          
         `; //TODO change class for article accordingly
@@ -144,9 +144,9 @@ function renderShoppingCart() {
         quantityInput.addEventListener('change', updateQuantity);
 
 
-        const removeItemButton = addElement('button', 'remove-from-cart', 'remove');
-        shoppingCartItem.appendChild(removeItemButton);
-
+        // const removeItemButton = addElement('button', 'remove-from-cart', 'remove');
+        // shoppingCartItem.appendChild(removeItemButton);
+        const removeItemButton = document.querySelector('.remove-from-cart');
         removeItemButton.addEventListener('click', (event) => {
             event.preventDefault();
             shopCart.splice(shopCart.indexOf(item), 1);

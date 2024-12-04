@@ -192,7 +192,16 @@ aside {
     top: 50px;
     max-height: calc(100vh - 50px);
     overflow-y: auto;
+
+    button {
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-self: center;
+        background-color: var(--color-accent);
+    }
 }
+
 
 aside .contact {
     width: 100px;
