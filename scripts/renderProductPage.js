@@ -1,31 +1,18 @@
 "use strict";
 
 
-function addElement(elementType, elementClass, elementText) {
-    const element = document.createElement(elementType);
-    if (elementClass) {
-        element.classList.add(elementClass);
-    }
-    if (elementText) {
-        element.textContent = elementText;
-    }
-    return element;
-}
+const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve product data
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderProductPage();
+    renderProductPage(product);
 });
 
-function renderProductPage() {
 
-    const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve product data
-
+function renderProductPage(product) {
     const productPageMain = document.querySelector('.product-page-main');
-    const productPageContainer = addElement('div', 'product-page-container', null);
-    productPageMain.appendChild(productPageContainer);
+    const productPageContainer = addElement('div', 'product-page-container');
 
-
-    productPageContainer.innerHTML = `
+    productPageContainer.innerHTML =`
     <img alt=${product.imgAlt} class="product-page-img" src="../${product.imgSrcMain}"/>
     <h2 class="product-page-name">${product.productName}</h2>
     <p class="product-page-description" style="width: 500px">${product.longDescription}</p>
@@ -38,7 +25,16 @@ function renderProductPage() {
         <li><strong>Kleur: </strong>${product.productDetails.color}</li>
         <li><strong>Allergien: </strong>${product.productDetails.allergy}</li>
     </ul>
-    <p>Nog wat tekst</p>`;
+    <p>${product.description}</p>`;
+
+    productPageMain.appendChild(productPageContainer);
 }
 
-renderShoppingCart();
+function addElement(elementType, elementClass) {
+    const element = document.createElement(elementType);
+    if (elementClass) {
+        element.classList.add(elementClass);
+    }
+    return element;
+}
+
