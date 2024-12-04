@@ -35,7 +35,8 @@ products.forEach((product) => {
     productLink.href = 'productPage.html';
     productContainer.appendChild(productLink);
 
-    productLink.innerHTML = `
+    function renderProductPage() {
+        return `
       <div class="img-container">
         <img alt="${product.imgAlt}" class="product-image-main" src="../${product.imgSrcMain}"/>
         <img alt="${product.imgAlt}" class="product-image-hover" src="../${product.imgSrcHover}"/>
@@ -45,6 +46,8 @@ products.forEach((product) => {
           <p>${product.description}</p>
         </div>
       </div>`;
+    }
+
 
     //create buttonContainer and append to productLink
     const buttonContainer = addElement('div', 'button-container', null);
