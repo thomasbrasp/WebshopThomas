@@ -232,3 +232,30 @@ const products = [
         }
     }
 ]; //12 script
+
+function addElement(elementType, elementClass) {
+    const element = document.createElement(elementType);
+    if (elementClass) {
+        element.classList.add(elementClass);
+    }
+    return element;
+}
+
+const bestsellers = products.slice(0, 3);
+for (let i = 0; i < bestsellers.length; i++) {
+    const product = bestsellers[i];
+    const bestsellerContainer = document.querySelector('#bestsellers-container');
+    const bestseller = addElement('div', 'bestseller-container');
+
+    bestseller.innerHTML = `
+    <div class="bestseller-image-container">
+        <img src="${product.imgSrcMain}" alt="${product.imgAlt}" class="bestseller-image">
+    </div>
+    <div class="bestseller-text-container">
+        <h2 class="bestseller-name">${product.productName}</h2>
+        <p class="bestseller-description">${product.description}</p>
+        <a href="${product.href}" class="bestseller-button">Bekijk product</a>
+    </div>
+    `
+    bestsellerContainer.appendChild(bestseller);
+}
