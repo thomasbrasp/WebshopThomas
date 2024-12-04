@@ -1,8 +1,10 @@
 "use strict";
-
+// TODO: add long product description
+// TODO: generate couple paragraphs with filler tekst
 const products = [
     {
-        productName: 'Cuban Tobacco - 30cl',
+        productName: 'Cuban Tobacco',
+        size: 30,
         price: 11.11,
         imgSrcMain: 'images/Products/IMG_2398.JPG',
         imgSrcHover: 'images/Products/IMG_2400.JPG',
@@ -19,7 +21,8 @@ const products = [
         }
     },
     {
-        productName: 'Sandalwood - 30cl',
+        productName: 'Sandalwood',
+        size: 30,
         price: 22.22,
         imgSrcMain: 'images/Products/IMG_2401.JPG',
         imgSrcHover: 'images/Products/IMG_2405.JPG',
@@ -36,7 +39,8 @@ const products = [
         }
     },
     {
-        productName: 'Lemongrass - 40cl',
+        productName: 'Lemongrass',
+        size: 40,
         price: 33.33,
         imgSrcMain: 'images/Products/IMG_2402.JPG',
         imgSrcHover: 'images/Products/IMG_2404.JPG',
@@ -53,7 +57,8 @@ const products = [
         }
     },
     {
-        productName: 'Clean Cotton - 30cl',
+        productName: 'Clean Cotton',
+        size: 30,
         price: 44.44,
         imgSrcMain: 'images/Products/IMG_2387.JPG',
         imgSrcHover: 'images/Products/IMG_2416.JPG',
@@ -70,7 +75,8 @@ const products = [
         }
     },
     {
-        productName: 'Lavender - 50cl',
+        productName: 'Lavender',
+        size: 50,
         price: 55.55,
         imgSrcMain: 'images/Products/IMG_2425.JPG',
         imgSrcHover: 'images/Products/IMG_2428.JPG',
@@ -87,7 +93,8 @@ const products = [
         }
     },
     {
-        productName: 'Vanilla Bean - 35cl',
+        productName: 'Vanilla Bean',
+        size: 60,
         price: 66.66,
         imgSrcMain: 'images/Products/IMG_2458.JPG',
         imgSrcHover: 'images/Products/IMG_2462.JPG',
@@ -104,7 +111,8 @@ const products = [
         }
     },
     {
-        productName: 'Ocean Breeze - 40cl',
+        productName: 'Ocean Breeze',
+        size: 40,
         price: 77.77,
         imgSrcMain: 'images/Products/IMG_2457.JPG',
         imgSrcHover: 'images/Products/IMG_2461.JPG',
@@ -121,7 +129,8 @@ const products = [
         }
     },
     {
-        productName: 'Cedar Wood - 45cl',
+        productName: 'Cedar Wood',
+        size: 45,
         price: 88.88,
         imgSrcMain: 'images/Products/IMG_2407.JPG',
         imgSrcHover: 'images/Products/IMG_2415.JPG',
@@ -138,7 +147,8 @@ const products = [
         }
     },
     {
-        productName: 'Eucalyptus Mint - 30cl',
+        productName: 'Eucalyptus Mint',
+        size: 35,
         price: 99.99,
         imgSrcMain: 'images/Products/IMG_2426.JPG',
         imgSrcHover: 'images/Products/IMG_2427.JPG',
@@ -155,7 +165,8 @@ const products = [
         }
     },
     {
-        productName: 'Pine Forest - 40cl',
+        productName: 'Pine Forest',
+        size: 40,
         price: 100.0,
         imgSrcMain: 'images/Products/IMG_2401.JPG',
         imgSrcHover: 'images/Products/IMG_2405.JPG',
@@ -172,7 +183,8 @@ const products = [
         }
     },
     {
-        productName: 'Midnight Jasmine - 35cl',
+        productName: 'Midnight Jasmine',
+        size: 35,
         price: 49.99,
         imgSrcMain: 'images/Products/IMG_2401.JPG',
         imgSrcHover: 'images/Products/IMG_2405.JPG',
@@ -189,7 +201,8 @@ const products = [
         }
     },
     {
-        productName: 'Cinnamon Spice - 30cl',
+        productName: 'Cinnamon Spice',
+        size: 30,
         price: 39.99,
         imgSrcMain: 'images/Products/IMG_2401.JPG',
         imgSrcHover: 'images/Products/IMG_2405.JPG',
