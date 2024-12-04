@@ -248,14 +248,22 @@ for (let i = 0; i < bestsellers.length; i++) {
     const bestseller = addElement('div', 'bestseller-container');
 
     bestseller.innerHTML = `
-    <div class="bestseller-image-container">
+    <div class="bestseller-info-container">
         <img src="${product.imgSrcMain}" alt="${product.imgAlt}" class="bestseller-image">
-    </div>
-    <div class="bestseller-text-container">
-        <h2 class="bestseller-name">${product.productName}</h2>
+        <h3 class="bestseller-name">${product.productName}</h3>
         <p class="bestseller-description">${product.description}</p>
-        <a href="${product.href}" class="bestseller-button">Bekijk product</a>
     </div>
-    `
+    <div class="bestseller-button">
+        <a href="#" class="bestseller-link">Bekijk product</a>
+    </div>`;
+
+    const link = bestseller.querySelector('.bestseller-link');
+    link.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default navigation
+        localStorage.setItem('selectedBestseller', JSON.stringify(product)); // Store product details
+        window.location.href = 'pages/productPage.html'; // Redirect to the product page
+    });
+
+
     bestsellerContainer.appendChild(bestseller);
 }

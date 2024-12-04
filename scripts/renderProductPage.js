@@ -2,9 +2,29 @@
 
 
 const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve product data
+const productData = localStorage.getItem('selectedBestseller');
+document.addEventListener('DOMContentLoaded', () => {
+
+    renderProductPage(product);
+
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderProductPage(product);
+    const productData = localStorage.getItem('selectedBestseller');
+    if (productData) {
+        const product = JSON.parse(productData); // Parse the product data back to an object
+
+        // Display product details on the page
+        const productContainer = document.querySelector('#product-details-container');
+        productContainer.innerHTML = `
+            <h1>${product.productName}</h1>
+            <img src="${product.imgSrcMain}" alt="${product.imgAlt}">
+            <p>${product.longDescription}</p>
+            <p>Price: $${product.price.toFixed(2)}</p>
+        `;
+    } else {
+        console.error('No product data found in localStorage.');
+    }
 });
 
 

@@ -179,6 +179,9 @@ main {
 
 .index {
     main {
+        h1, h2 {
+            font-size: 1.25rem;
+        }
         display: flex;
         flex-direction: column;
         section {
@@ -190,11 +193,11 @@ main {
             }
         }
 
-        p {
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-small);
-            box-shadow: var(--shadow-large)
-        }
+        /*p {*/
+        /*    padding: var(--spacing-md);*/
+        /*    border-radius: var(--border-radius-small);*/
+        /*    box-shadow: var(--shadow-large)*/
+        /*}*/
         .center-title {
             text-align: center;
         }
@@ -204,10 +207,49 @@ main {
 
 #bestsellers-container {
     display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .bestseller-container {
-    background-color: red;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .bestseller-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+    }
+
+
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow-large);
+    width: calc(100% / 3);
+    height: 400px;
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: var(--border-radius-small);
+    }
+    .bestseller-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 5px;
+        height: auto;
+        box-sizing: border-box;
+        background-color: var(--color-accent);
+        border-radius: var(--border-radius-small);
+        &:hover {
+            cursor: pointer;
+            background-color: var(--color-accent-fifty);
+        }
+    }
+    /*background-color: red;*/
+
 }
 
 
