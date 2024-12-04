@@ -14,12 +14,13 @@ function addElement(elementType, elementClass, elementText, href = null) {
     }
     if (elementText) {
         element.textContent = elementText;
-    }
+    }1
     if (href) {
         element.href = href;
     }
     return element;
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     renderProductPage();
 });
