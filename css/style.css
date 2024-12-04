@@ -238,7 +238,7 @@ aside .contact {
     grid-area: aside;
 }
 
-.shopping-cart-item-container {
+.shopping-cart-item {
     border: 1px solid #ccc;
     box-shadow: var(--shadow-large);
     background-color: var(--color-primary);

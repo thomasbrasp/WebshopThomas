@@ -28,7 +28,7 @@ function renderProductPage() {
     productPageContainer.innerHTML = `
     <img alt=${product.imgAlt} class="product-page-img" src="../${product.imgSrcMain}"/>
     <h2 class="product-page-name">${product.productName}</h2>
-    <p class="product-page-description">${product.description}</p>
+    <p class="product-page-description" style="width: 500px">${product.longDescription}</p>
     <h3>Productkenmerken:</h3>
     <ul class="product-details">
         <li><strong>Geur: </strong>${product.productDetails.scent}</li>
@@ -40,3 +40,5 @@ function renderProductPage() {
     </ul>
     <p>Nog wat tekst</p>`;
 }
+
+renderShoppingCart();
