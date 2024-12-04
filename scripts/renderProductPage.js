@@ -5,29 +5,22 @@ const selectedProduct = localStorage.getItem('selectedProduct');
 const selectedBestseller = localStorage.getItem('selectedBestseller');
 
 document.addEventListener('DOMContentLoaded', () => {
-    let product;
+    // Check for either selectedBestseller or selectedProduct
+    const productData = localStorage.getItem('selectedBestseller') || localStorage.getItem('selectedProduct'); //after using values it gets removed so it should not give a conflict this way
 
-    // Prioritize selectedBestseller over selectedProduct
-    if (selectedBestseller) {
-        product = JSON.parse(selectedBestseller); // Use selectedBestseller if available
-        console.log('Using selectedBestseller data');
-        localStorage.removeItem('selectedBestseller');
-    } else if (selectedProduct) {
-        product = JSON.parse(selectedProduct); // Use selectedProduct if selectedBestseller is not available
-        console.log('Using selectedProduct data');
-        localStorage.removeItem('selectedProduct');
+    if (productData) {
+        const product = JSON.parse(productData);
+        localStorage.clear();
+        renderProductPage(product);
     } else {
-        console.error('No product data found in localStorage.');
-        return; // Exit early if no product data is available
+        console.error('Nope');
     }
-
-    renderProductPage(product); // Render the product page with the chosen data
 });
 
 function renderProductPage(product) {
     const productPageMain = document.querySelector('.product-page-main');
     if (!productPageMain) {
-        console.error('Product page container not found!');
+        console.error('Nope');
         return;
     }
 

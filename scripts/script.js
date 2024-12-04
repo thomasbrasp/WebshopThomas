@@ -92,7 +92,7 @@ function updateCart(product) {
 function renderShoppingCart() {
 
     const shoppingCartItemList = document.querySelector('.shopping-cart-container');
-    shoppingCartItemList.innerHTML = ''; //clear existing items
+    shoppingCartItemList.innerHTML = '';
     let sumShopCart = 0;
 
     shopCart.forEach((item) => {
