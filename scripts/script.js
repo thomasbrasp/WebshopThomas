@@ -27,17 +27,14 @@ const productsGrid = document.querySelector('.all-products-container');
  *               products                  *
  *******************************************/
 products.forEach((product) => {
-    //create productContainer and append to grid
     const productContainer = addElement('div', 'product-container', null);
-
     productsGrid.appendChild(productContainer);
 
-    //create productLink and append to productContainer
+    //productLink -> attribute/link -> entire product-container > buttons will be added inside later (make sure to preventDefault where needed)
     const productLink = addElement('a', null, null);
     productLink.href = 'productPage.html';
     productContainer.appendChild(productLink);
 
-    //inside this attribute we write the html like we would in html.
     productLink.innerHTML = `
       <div class="img-container">
         <img alt="${product.imgAlt}" class="product-image-main" src="../${product.imgSrcMain}"/>
