@@ -1,6 +1,15 @@
 "use strict";
 // TODO: add long product description
 // TODO: generate couple paragraphs with filler tekst
+
+//pagina met klanten moet niet in nav
+//admin only pagina maar er moet geen wachtwoord op staan
+//layout detig maken voor de ndex pagina
+//layout in orde brengen voor pagina met alle klanten
+//nakijken wat we geleerd hebben en dat toepassen op de elementen die ik al had toegevoegd
+//producten ook in json ztten
+//deel
+
 const products = [
     {
         productName: 'Cuban Tobacco',
