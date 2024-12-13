@@ -1,4 +1,6 @@
 'use strict';
+
+
 //CHECKLIST
 // winkelmandje:::
 // Plaats in het aside-element op de shoppagina jouw winkelwandje.

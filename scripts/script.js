@@ -1,7 +1,7 @@
-'use strict';
-//get all nested stuff out
-//check feedback list and adjust accordingly
-//check next assignment
+"use strict";
+
+const shopCart = [];
+const productsGrid = document.querySelector('.all-products-container');
 
 function addElement(elementType, elementClass, elementText) {
     const element = document.createElement(elementType);
@@ -14,29 +14,33 @@ function addElement(elementType, elementClass, elementText) {
     return element;
 }
 
-/*******************************************
- *         variables and objects           *
- *******************************************/
+products.forEach(renderProduct);
 
-const shopCart = [];
-//get the container where all the product-container's should be placed in.
-const productsGrid = document.querySelector('.all-products-container');
+function addEventListenersToProduct(product, productLink, wishListButton, addToCartButton) {
+    productLink.addEventListener('click', (event) => linkToProductPage(event, product));
+    addToCartButton.addEventListener('click', (event) => addToCard(event, product));
+    wishListButton.addEventListener('click', (event) => wishListToggle(event, wishListButton));
+}
+function addToCard(event, product) {
+    event.preventDefault();
+    event.stopPropagation();
+    updateCart(product);
+    renderShoppingCart();
+}
+function linkToProductPage(event, product) {
+    event.preventDefault();
+    localStorage.setItem('selectedProduct', JSON.stringify(product));
+    window.location.href = 'productPage.html';
+}
+function wishListToggle(event, button) {
+    event.preventDefault();
+    event.stopPropagation();
+    button.style.backgroundColor = button.style.backgroundColor === 'black' ? 'var(--color-accent)' : 'black';
+}
 
 
-/*******************************************
- *               products                  *
- *******************************************/
-products.forEach((product) => {
-    const productContainer = addElement('div', 'product-container', null);
-    productsGrid.appendChild(productContainer);
-
-    //productLink -> attribute/link -> entire product-container > buttons will be added inside later (make sure to preventDefault where needed)
-    const productLink = addElement('a', null, null);
-    productLink.href = 'productPage.html';
-    productContainer.appendChild(productLink);
-
-    function renderProductPage() {
-        return `
+function createProductHTML(product) {
+    return `
       <div class="img-container">
         <img alt="${product.imgAlt}" class="product-image-main" src="../${product.imgSrcMain}"/>
         <img alt="${product.imgAlt}" class="product-image-hover" src="../${product.imgSrcHover}"/>
@@ -46,120 +50,91 @@ products.forEach((product) => {
           <p>${product.description}</p>
         </div>
       </div>`;
-    }
-
-
-    //create buttonContainer and append to productLink
-    const buttonContainer = addElement('div', 'button-container', null);
+}
+function createButtonContainer(product, productLink) {
+    const buttonContainer = addElement('div', 'button-container');
     productLink.appendChild(buttonContainer);
-    //create addToWishlistButton and append to buttonContainer
-    const wishListButton = addElement('button', 'add-to-wishlist', 'Wishlist');
 
-    buttonContainer.appendChild(wishListButton);
-    //create addToCartButton and append to buttonContainer
+    const wishListButton = addElement('button', 'add-to-wishlist', 'Wishlist');
     const addToCartButton = addElement('button', 'add-to-cart', 'IN WINKELMAND');
+    buttonContainer.appendChild(wishListButton);
     buttonContainer.appendChild(addToCartButton);
 
-    productLink.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent the default link behavior
-        localStorage.setItem('selectedProduct', JSON.stringify(product)); // Save the clicked product details
-        window.location.href = 'productPage.html'; // Navigate to the product page
-    });
-
-    //when pressed, check if item already exists
-    addToCartButton.addEventListener('click', (event) => {
-        event.preventDefault(); // stop bubbling --> making stuff not click through
-        event.stopPropagation();
-
-        const item = shopCart.find((item) => item.productName === product.productName); //bool to check if item is already in the list
-        if (!item) {
-            shopCart.push({
-                productName: product.productName,
-                quantity: 1,
-                price: product.price,
-                totalPrice: product.price,
-            });
-        } else {
-            item.quantity += 1;
-            item.totalPrice = item.price * item.quantity;
-        }
-        renderShoppingCart();
-    }); //end of addToCartButton.event listener
-
-    let wishListed = false;
-
-    wishListButton.addEventListener('click', (event) => {
-        event.preventDefault(); // stop bubbling --> making stuff not click through
-        event.stopPropagation();
-
-        wishListed = !wishListed;
-        wishListed
-            ? wishListButton.style.backgroundColor = 'black'
-            : wishListButton.style.backgroundColor = 'var(--color-accent)';
-    }); //end of addToWishlistButton.event listener
-}); //end products.forEach
+    return {wishListButton, addToCartButton};
+}
+function removeItemFromCart(item) {
+    shopCart.splice(shopCart.indexOf(item), 1);
+    renderShoppingCart();
+}
 
 
-/*******************************************
- *            shopping cart                *
- *******************************************/
+function updateItemQuantity(event, item) {
+    item.quantity = parseInt(event.target.value, 10) || 1;
+    item.totalPrice = item.price * item.quantity;
+    renderShoppingCart();
+}
+function updateCart(product) {
+    const item = shopCart.find((item) => item.productName === product.productName); //bool to check if item is already in the list
+    if (!item) {
+        shopCart.push({
+            productName: product.productName,
+            quantity: 1,
+            price: product.price,
+            totalPrice: product.price,
+        });
+    } else {
+        item.quantity += 1;
+        item.totalPrice = item.price * item.quantity;
+    }
+}
+
+
 function renderShoppingCart() {
 
     const shoppingCartItemList = document.querySelector('.shopping-cart-container');
-    shoppingCartItemList.innerHTML = ''; //clear existing items
-
+    shoppingCartItemList.innerHTML = '';
     let sumShopCart = 0;
+
     shopCart.forEach((item) => {
+        const cartItem = renderCartItem(item);
+        shoppingCartItemList.appendChild(cartItem.element);
+        sumShopCart += item.totalPrice;
 
-        /*******************************************
-         *          item shopping cart             *
-         *******************************************/
-        const shoppingCartItem = addElement('div', 'shopping-cart-item', null);
-        shoppingCartItemList.appendChild(shoppingCartItem);
+        cartItem.quantityInput.addEventListener('change', (event) => updateItemQuantity(event, item));
+        cartItem.removeItemButton.addEventListener('click', () => removeItemFromCart(item));
+    });
 
-        shoppingCartItem.innerHTML = `
+    const shoppingCartTotal = addElement('div', 'shopping-cart-total', `€${sumShopCart.toFixed(2)}`);
+    shoppingCartItemList.appendChild(shoppingCartTotal);
+}
+function renderCartItem(item) {
+    const shoppingCartItem = addElement('div', 'shopping-cart-item', null);
+    shoppingCartItem.innerHTML = `
           <div class="flex-space-between">
-          <h2 class="product-name">${item.productName}</h2>
-          <input type="number" class="quantity-input" value="${item.quantity}" min="1" />          
-          </div>
-          <button class="remove-from-cart">remove</button>
+            <h2 class="product-name">${item.productName}</h2>
+            <button class="remove-from-cart">X</button>
+          </div>          
           <article class="flex-space-between">      
             <h3 class="price">€${item.price}</h3>
-            
+            <input type="number" class="quantity-input" value="${item.quantity}" min="1" />
             <h3 class="total-price">€${item.totalPrice.toFixed(2)}</h3>
-          </article>          
-        `; //TODO change class for article accordingly
-        //TODO when changing names or classes, change css also
+          </article>`;
+    return {
+        element: shoppingCartItem,
+        quantityInput: shoppingCartItem.querySelector('.quantity-input'),
+        removeItemButton: shoppingCartItem.querySelector('.remove-from-cart'),
+    };
+}
+function renderProduct(product) {
+    const productContainer = addElement('div', 'product-container');
+    productsGrid.appendChild(productContainer);
 
-        /*******************************************
-         *           Quantity Updates              *
-         *******************************************/
-        function updateQuantity(event){
-            item.quantity = parseInt(event.target.value, 10) || 1;
-            item.totalPrice = item.price * item.quantity;
-            shoppingCartItem.querySelector('.total-price').textContent = `€${sumShopCart.toFixed(2)}`;
+    //productLink -> attribute/link -> entire product-container > buttons will be added inside later (make sure to preventDefault where needed)
+    const productLink = addElement('a', null, null);
+    productLink.href = 'productPage.html';
+    productContainer.appendChild(productLink);
+    productLink.innerHTML = createProductHTML(product);
 
-            renderShoppingCart()
-
-        }
-        sumShopCart += item.totalPrice;
-        const quantityInput = shoppingCartItem.querySelector('.quantity-input');
-        quantityInput.addEventListener('change', updateQuantity);
-
-
-        // const removeItemButton = addElement('button', 'remove-from-cart', 'remove');
-        // shoppingCartItem.appendChild(removeItemButton);
-        const removeItemButton = document.querySelector('.remove-from-cart');
-        removeItemButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            shopCart.splice(shopCart.indexOf(item), 1);
-            renderShoppingCart();
-        });
-
-    }); //end of shopCart.forEach
-
-    const shoppingCartTotal = addElement('div', 'shopping-cart-total', null);
-    shoppingCartTotal.innerHTML = `${sumShopCart.toFixed(2)}`;
-    shoppingCartItemList.appendChild(shoppingCartTotal);
-} //end renderingShoppingCart()
-
+    const buttonContainer = createButtonContainer(product, productLink);
+    addEventListenersToProduct(product, productLink, buttonContainer.wishListButton, buttonContainer.addToCartButton);
+}

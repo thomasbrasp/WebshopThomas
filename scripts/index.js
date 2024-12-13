@@ -1,6 +1,15 @@
 "use strict";
 // TODO: add long product description
 // TODO: generate couple paragraphs with filler tekst
+
+//pagina met klanten moet niet in nav
+//admin only pagina maar er moet geen wachtwoord op staan
+//layout detig maken voor de ndex pagina
+//layout in orde brengen voor pagina met alle klanten
+//nakijken wat we geleerd hebben en dat toepassen op de elementen die ik al had toegevoegd
+//producten ook in json ztten
+//deel
+
 const products = [
     {
         productName: 'Cuban Tobacco',
@@ -233,4 +242,37 @@ const products = [
     }
 ]; //12 script
 
+function addElement(elementType, elementClass) {
+    const element = document.createElement(elementType);
+    if (elementClass) {
+        element.classList.add(elementClass);
+    }
+    return element;
+}
 
+const bestsellers = products.slice(0, 3);
+for (let i = 0; i < bestsellers.length; i++) {
+    const product = bestsellers[i];
+    const bestsellerContainer = document.querySelector('#bestsellers-container');
+    const bestseller = addElement('div', 'bestseller-container');
+
+    bestseller.innerHTML = `
+    <div class="bestseller-info-container">
+        <img src="${product.imgSrcMain}" alt="${product.imgAlt}" class="bestseller-image">
+        <h3 class="bestseller-name">${product.productName}</h3>
+        <p class="bestseller-description">${product.description}</p>
+    </div>
+    <div class="bestseller-button">
+        <a href="#" class="bestseller-link">Bekijk product</a>
+    </div>`;
+
+    const link = bestseller.querySelector('.bestseller-link');
+    link.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default navigation
+        localStorage.setItem('selectedBestseller', JSON.stringify(product)); // Store product details
+        window.location.href = 'pages/productPage.html'; // Redirect to the product page
+    });
+
+
+    bestsellerContainer.appendChild(bestseller);
+}

@@ -1,6 +1,14 @@
 /*******************************************
  *               VARIABLES                  *
  *******************************************/
+/*
+#282828
+#222222
+
+
+*/
+
+
 :root {
     /* colors */
     --color-primary: #EEEEEE;
@@ -55,7 +63,7 @@
 @font-face {
     font-family: 'Roboto-Regular';
     src: url('fonts/Roboto/Roboto-Regular.ttf') format('woff2'),
-        url('fonts/Roboto/Roboto-Regular.ttf') format('woff');
+    url('fonts/Roboto/Roboto-Regular.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -171,16 +179,77 @@ main {
 
 .index {
     main {
-        /* display: flex;
-        flex-direction: column; */
-        box-shadow: none;
+        h1, h2 {
+            font-size: 1.25rem;
+        }
+        display: flex;
+        flex-direction: column;
+        section {
+            width: 90%;
+            /*background-color: gray;*/
+            &:nth-of-type(even) {
+                align-self: end;
+                text-align: end;
+            }
+        }
 
-        p {
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-small);
-            box-shadow: var(--shadow-large)
+        /*p {*/
+        /*    padding: var(--spacing-md);*/
+        /*    border-radius: var(--border-radius-small);*/
+        /*    box-shadow: var(--shadow-large)*/
+        /*}*/
+        .center-title {
+            text-align: center;
         }
     }
+
+}
+
+#bestsellers-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.bestseller-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .bestseller-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+    }
+
+
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow-large);
+    width: calc(100% / 3);
+    height: 400px;
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: var(--border-radius-small);
+    }
+    .bestseller-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 5px;
+        height: auto;
+        box-sizing: border-box;
+        background-color: var(--color-accent);
+        border-radius: var(--border-radius-small);
+        &:hover {
+            cursor: pointer;
+            background-color: var(--color-accent-fifty);
+        }
+    }
+    /*background-color: red;*/
+
 }
 
 
@@ -225,6 +294,7 @@ aside .contact {
     cursor: pointer;
     padding: 5px;
 }
+
 .add-to-wishlist {
 
     background-color: var(--color-accent);
@@ -281,6 +351,7 @@ aside .contact {
 footer {
     grid-area: footer;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-shadow: var(--shadow-white);
@@ -329,6 +400,7 @@ footer {
     }
 
     /* positioning the first under the other one, for the hovereffect within the mediaqueries */
+
     img.product-image-hover {
 
         border-radius: var(--border-radius-small);
@@ -339,8 +411,7 @@ footer {
         bottom: 0;
         opacity: 0;
 
-        transition: opacity 0.5s ease;
-        ;
+        transition: opacity 0.5s ease;;
         /*    extra*/
     }
 
@@ -382,8 +453,6 @@ footer {
         padding-left: 20px;
     }
 }
-
-
 
 
 /*******************************************
@@ -490,16 +559,17 @@ footer {
         main {
             width: 100%;
         }
+
         .product-page-main {
             img {
                 max-width: 716px;
             }
         }
     }
+
     .contact-form {
         width: 300px;
     }
-
 
 
 }
@@ -511,6 +581,7 @@ footer {
         main {
             width: 100%;
         }
+
         .product-container {
             /* show 3 script next to eachother */
             width: calc(33% - 24px);
@@ -519,6 +590,7 @@ footer {
         }
 
     }
+
     .contact-form {
         width: 500px;
     }
@@ -532,12 +604,14 @@ footer {
             margin: 0 auto;
             width: 1440px;
         }
+
         .product-container {
             /* show 4 script next to eachother */
             width: calc(25% - 24px);
 
         }
     }
+
     .contact-form {
         width: 750px;
     }
@@ -548,57 +622,6 @@ footer {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*******************************************

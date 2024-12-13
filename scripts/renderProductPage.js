@@ -1,32 +1,33 @@
 "use strict";
 
-
-function addElement(elementType, elementClass, elementText) {
-    const element = document.createElement(elementType);
-    if (elementClass) {
-        element.classList.add(elementClass);
-    }
-    if (elementText) {
-        element.textContent = elementText;
-    }
-    return element;
-}
+// Retrieve product data from localStorage
+const selectedProduct = localStorage.getItem('selectedProduct');
+const selectedBestseller = localStorage.getItem('selectedBestseller');
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderProductPage();
+    // Check for either selectedBestseller or selectedProduct
+    const productData = localStorage.getItem('selectedBestseller') || localStorage.getItem('selectedProduct'); //after using values it gets removed so it should not give a conflict this way
+
+    if (productData) {
+        const product = JSON.parse(productData);
+        localStorage.clear();
+        renderProductPage(product);
+    } else {
+        console.error('Nope');
+    }
 });
 
-function renderProductPage() {
-
-    const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve product data
-
+function renderProductPage(product) {
     const productPageMain = document.querySelector('.product-page-main');
-    const productPageContainer = addElement('div', 'product-page-container', null);
-    productPageMain.appendChild(productPageContainer);
+    if (!productPageMain) {
+        console.error('Nope');
+        return;
+    }
 
+    const productPageContainer = addElement('div', 'product-page-container');
 
     productPageContainer.innerHTML = `
-    <img alt=${product.imgAlt} class="product-page-img" src="../${product.imgSrcMain}"/>
+    <img alt="${product.imgAlt}" class="product-page-img" src="../${product.imgSrcMain}"/>
     <h2 class="product-page-name">${product.productName}</h2>
     <p class="product-page-description" style="width: 500px">${product.longDescription}</p>
     <h3>Productkenmerken:</h3>
@@ -36,9 +37,17 @@ function renderProductPage() {
         <li><strong>Wax: </strong>${product.productDetails.wax}</li>
         <li><strong>Materiaal: </strong>${product.productDetails.containerMaterial}</li>
         <li><strong>Kleur: </strong>${product.productDetails.color}</li>
-        <li><strong>Allergien: </strong>${product.productDetails.allergy}</li>
+        <li><strong>Allergieën: </strong>${product.productDetails.allergy}</li>
     </ul>
-    <p>Nog wat tekst</p>`;
+    <p>${product.description}</p>`;
+
+    productPageMain.appendChild(productPageContainer);
 }
 
-renderShoppingCart();
+function addElement(elementType, elementClass) {
+    const element = document.createElement(elementType);
+    if (elementClass) {
+        element.classList.add(elementClass);
+    }
+    return element;
+}
