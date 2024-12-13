@@ -29,7 +29,7 @@ function renderProductPage(product) {
     productPageContainer.innerHTML = `
     <img alt="${product.imgAlt}" class="product-page-img" src="../${product.imgSrcMain}"/>
     <h2 class="product-page-name">${product.productName}</h2>
-    <p class="product-page-description" style="width: 500px">${product.longDescription}</p>
+    <p class="product-page-description">${product.description}</p>
     <h3>Productkenmerken:</h3>
     <ul class="product-details">
         <li><strong>Geur: </strong>${product.productDetails.scent}</li>
@@ -39,7 +39,7 @@ function renderProductPage(product) {
         <li><strong>Kleur: </strong>${product.productDetails.color}</li>
         <li><strong>Allergieën: </strong>${product.productDetails.allergy}</li>
     </ul>
-    <p>${product.description}</p>`;
+    <p  style="width: 600px">${product.longDescription}</p>`;
 
     productPageMain.appendChild(productPageContainer);
 }
