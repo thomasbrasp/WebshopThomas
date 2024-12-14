@@ -78,9 +78,8 @@ const displayClients = () => {
         const details = createElement('div', 'details');
 
         details.innerHTML = `
-            <strong>${client.title}</strong><br>
-            ${client.first} ${client.last}<br>
-            ${client.country}
+            <p><strong>${client.title}</strong>${client.first}${client.last}</p>
+            <p>${client.country}</p>            
         `;
 
         // Hover effect to show details

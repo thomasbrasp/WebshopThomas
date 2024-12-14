@@ -130,6 +130,7 @@ header {
         justify-content: center;
         gap: 20px;
     }
+
 }
 
 /*******************************************
@@ -166,10 +167,29 @@ main {
             text-align: center;
         }
     }
+    figure {
+        max-width: 768px;
 
+        figcaption {
+            font-style: italic;
+        }
 
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
 
 }
+#about-section {
+
+}
+#products-section{
+
+    margin: 100px 0;
+}
+
 
 #about-me-section {
     max-width: 1200px;
@@ -250,6 +270,7 @@ img.owner-photo {
  *                ASIDE                    *
  *******************************************/
 aside {
+
     position: sticky;
     top: 50px;
     max-height: calc(100vh - 50px);
@@ -287,6 +308,12 @@ aside .contact {
 
 
 .add-to-cart, .add-to-wishlist {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    max-height: 40px;
     background-color: var(--color-accent);
     cursor: pointer;
     padding: 8px 12px;
@@ -350,6 +377,49 @@ footer {
 /*******************************************
  *      PRODUCT CONTAINER AND STYLING      *
  *******************************************/
+
+.shop {
+    main {
+        width: 100%;
+    }
+
+    .product-page-main {
+        img {
+            max-width: 716px;
+        }
+    }
+    .shopping-cart-container {
+        width: 250px;
+        max-height: 600px;
+        margin-right: 10px;
+        box-shadow: var(--shadow-large);
+        grid-area: aside;
+        border-radius: var(--border-radius-medium);
+        overflow-y: scroll;
+    }
+    .hidden {
+        display: none;
+    }
+
+    .shopping-cart-item {
+        height: 100px;
+        border: 1px solid #e0e0e0;
+        box-shadow: var(--shadow-small);
+        background-color: var(--color-primary);
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
+        border-radius: var(--border-radius-small);
+        transition: background-color var(--transition-speed-medium) var(--transition-ease);
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+
+        &:nth-of-type(even) {
+            background-color: var(--color-secondary);
+        }
+    }
+}
 
 .all-products-container {
     display: flex;
@@ -542,46 +612,6 @@ footer {
             "footer footer footer";
     }
 
-    .shop {
-        main {
-            width: 100%;
-        }
-
-        .product-page-main {
-            img {
-                max-width: 716px;
-            }
-        }
-        .shopping-cart-container {
-            width: 250px;
-            max-height: 600px;
-            margin-right: 10px;
-            box-shadow: var(--shadow-large);
-            grid-area: aside;
-            border-radius: var(--border-radius-medium);
-            overflow-y: scroll;
-        }
-
-        .shopping-cart-item {
-            height: 100px;
-            border: 1px solid #e0e0e0;
-            box-shadow: var(--shadow-small);
-            background-color: var(--color-primary);
-            padding: var(--spacing-sm);
-            margin-bottom: var(--spacing-xs);
-            border-radius: var(--border-radius-small);
-            transition: background-color var(--transition-speed-medium) var(--transition-ease);
-
-            &:hover {
-                background-color: #f8f9fa;
-            }
-
-            &:nth-of-type(even) {
-                background-color: var(--color-secondary);
-            }
-        }
-    }
-
     .contact-form {
         width: 300px;
     }
@@ -608,6 +638,28 @@ footer {
 }
 
 @media (min-width: 1440px) {
+    .index {
+        h2 {
+            font-size: 1.5rem;
+        }
+        p, h3 {
+            font-size: 1.25rem;
+        }
+    }
+
+    figure {
+        min-width: 1440px;
+
+        figcaption {
+            font-style: italic;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
     .shop {
         main {
             margin: 0 auto;
@@ -626,8 +678,7 @@ footer {
     }
 
     #map {
-        width: 500px;
-        height: 500px;
+        width: 100%;
     }
 
 }

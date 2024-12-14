@@ -5,7 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 var myIcon = L.icon({
-    iconUrl: 'css/images/KeirsenTransparent2.png',
+    iconUrl: '../images/Logo/KeirsenTransparent2.png',
     iconSize: [38, 38],
     iconAnchor: [22, 22],
     popupAnchor: [-3, -76],

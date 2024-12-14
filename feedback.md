@@ -6,12 +6,12 @@ Hieronder staan de verbeterpunten die je kunt doorvoeren om je project aan te pa
    - 
 
 ## Algemeen
-- [ ] Gebruik Reset.css?
-- [ ] Overal gebruik van relatieve ipv. absolute paden?
-- [ ] Nederlandse copy, spelling in orde, lang-attribuut, overal echte copy (uit deelopdracht 1)
-- [ ] Correct gebruik van grid voor algemene lay-out
-- [ ] Project structuur in orde (css, assets folder, html files in de root van je project)?
-- [ ] Juiste HTML5 tags (header / main / footer / sections / articles / juiste volgorde headings / `<img>` alt attributes / ...)
+- [x] Gebruik Reset.css?
+- [x] Overal gebruik van relatieve ipv. absolute paden?
+- [x] Nederlandse copy, spelling in orde, lang-attribuut, overal echte copy (uit deelopdracht 1)
+- [x] Correct gebruik van grid voor algemene lay-out
+- [x] Project structuur in orde (css, assets folder, html files in de root van je project)?
+- [x] Juiste HTML5 tags (header / main / footer / sections / articles / juiste volgorde headings / `<img>` alt attributes / ...)
 - [ ] Foutloze HTML / CSS syntax?
 - [ ] Aspect ratio van images overal gerespecteerd?
 
@@ -19,10 +19,10 @@ Hieronder staan de verbeterpunten die je kunt doorvoeren om je project aan te pa
 
 ### index.html
 
-- [ ] Sfeerbeeld aanwezig *
+- [x] Sfeerbeeld aanwezig *
 - [x] Beschrijving webshop
-- [ ] 3 meest verkochte producten
-- [ ] Foto & uitleg auteur
+- [x] 3 meest verkochte producten
+- [x] Foto & uitleg auteur
 
 \* ga voor iets groter
 

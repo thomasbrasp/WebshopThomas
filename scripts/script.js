@@ -100,8 +100,14 @@ function updateCart(product) {
 
 function renderShoppingCart() {
     const shoppingCartItemList = document.querySelector('.shopping-cart-container');
+    shoppingCartItemList.classList.remove('hidden');
     shoppingCartItemList.innerHTML = '';
     let sumShopCart = 0;
+
+    const shoppingCartTitle = addElement('p', 'shopping-cart-title', 'Winkelmandje');
+        shoppingCartItemList.appendChild(shoppingCartTitle);
+
+    shoppingCartItemList.classList.remove('hidden');
 
     shopCart.forEach((item) => {
         const cartItem = renderCartItem(item);
